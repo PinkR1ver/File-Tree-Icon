@@ -4,12 +4,17 @@ This repository is meant to gengerate beautiful and clear file tree to make your
 
 ## User instruction
 
-Now, this tool only have the basic function.
+Using this:
 ```
-python itree.py [root]
+python itree.py [argv] [root]
 ```
 
 Then you can get the file structure in your root dir.
+
+Now argv have this:
+* **-v**: show version
+* **-h**: show hidden files
+* **--help**: show help
 
 Example of this repository:
 ```
