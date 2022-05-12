@@ -24,16 +24,40 @@ if '--help' in sys.argv:
     print("")
     print("optional arguments:")
     print("")
-    print("  -v, --version    Show the itree version number and exit")
-    print("  --help           Show this help message and exit.")
-    print("  -h               Output hidden files and dirs")
+    print("  -v, --version         Show the itree version number and exit")
+    print("  --help                Show this help message and exit.")
+    print("  -h                    Output hidden files and dirs")
+    print("  -d, --depth [number]  set the depth we will show, default is 5")
     exit()
 
+if '-d' in sys.argv or '--depth' in sys.argv:
+
+    # check -d command
+
+    if '-d' in sys.argv and '--depth' in sys.argv:
+        print("You just need use \'-d\' or \'--depth\', don't need use both of them")
+        exit()
+    if '-d' in sys.argv:
+        index = sys.argv.index('-d')
+    else:
+        index = sys.argv.index('--depth')
+    
+    # Get depth number
+
+    if sys.argv[index + 1].isdigit():
+        depth_bound = int(sys.argv[index + 1])
+    else:
+        print("-d or -depth should be follwed with number depth, use itree --help to check useage")
+        exit()
+
+else:
+    depth_bound = 5
+        
 
 # Build File tree
 for i, (root, dirs, files) in enumerate(os.walk(base_path)):
 
-    ## Init Build in file tree level 0
+    ## Init Build in file tree depth 0
     if i == 0:
         for directory in dirs:
             if not skip_hidden or '.' not in directory[0]:
@@ -55,19 +79,26 @@ for i, (root, dirs, files) in enumerate(os.walk(base_path)):
         ## if index increase,
         ## it means that the dir have sub dirs or files, 
         ## so need to replace the '┣' with '┗'
+
         index_flag = 0
 
         root_partial = ''
-        levels = len(root.replace(base_path, '').split('\\'))
-        for level in range(levels - 2):
+
+        depths = len(root.replace(base_path + '\\', '').replace(base_path, '').split('\\'))
+        
+        if depths >= depth_bound:
+            continue
+            
+        for depth in range(depths - 1):
             root_partial += "┃ "
         root_partial += '┣ 📂 '
+
         if root_partial + root.split('\\')[-1] in file_tree:
             index = file_tree.index(root_partial + root.split('\\')[-1])
         elif root_partial.replace("┣ 📂", "┗ 📂") + root.split('\\')[-1] in file_tree:
             index = file_tree.index(root_partial.replace("┣ 📂", "┗ 📂") + root.split('\\')[-1])
         else:
-            break
+            continue
 
         for directory in dirs:
             if not skip_hidden or '.' not in directory[0]:

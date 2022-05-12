@@ -12,42 +12,31 @@ python itree.py [argv] [root]
 Then you can get the file structure in your root dir.
 
 Now argv have this:
-* **-v**: show version
+* **-v, --version**: show version
 * **-h**: show hidden files
 * **--help**: show help
+* **-d, --depth [number]**:  set the depth we will show, default is 5
 
-Example of this repository:
+Example of this repository `python .\itree.py -d 2 -h .`
 ```
 📦 .
 ┣ 📂 .git
 ┃ ┣ 📂 hooks
-┃ ┃ ┣ 📄 applypatch-msg.sample
-┃ ┃ ┣ 📄 commit-msg.sample
-┃ ┃ ┣ 📄 fsmonitor-watchman.sample
-┃ ┃ ┣ 📄 post-update.sample
-┃ ┃ ┣ 📄 pre-applypatch.sample
-┃ ┃ ┣ 📄 pre-commit.sample
-┃ ┃ ┣ 📄 pre-merge-commit.sample
-┃ ┃ ┣ 📄 pre-push.sample
-┃ ┃ ┣ 📄 pre-rebase.sample
-┃ ┃ ┣ 📄 pre-receive.sample
-┃ ┃ ┣ 📄 prepare-commit-msg.sample
-┃ ┃ ┣ 📄 push-to-checkout.sample
-┃ ┃ ┗ 📄 update.sample
 ┃ ┣ 📂 info
-┃ ┃ ┗ 📄 exclude
+┃ ┣ 📂 logs
 ┃ ┣ 📂 objects
-┃ ┃ ┣ 📂 info
-┃ ┃ ┗ 📂 pack
 ┃ ┣ 📂 refs
-┃ ┃ ┣ 📂 heads
-┃ ┃ ┗ 📂 tags
+┃ ┣ 📄 COMMIT_EDITMSG
 ┃ ┣ 📄 config
 ┃ ┣ 📄 description
-┃ ┗ 📄 HEAD
-┣ 📂 output
+┃ ┣ 📄 FETCH_HEAD
+┃ ┣ 📄 HEAD
+┃ ┣ 📄 index
+┃ ┗ 📄 ORIG_HEAD
+┣ 📂 bin
 ┃ ┗ 📄 itree.exe
 ┣ 📄 itree.py
+┣ 📄 LICENSE
 ┗ 📄 README.md
 ```
 
