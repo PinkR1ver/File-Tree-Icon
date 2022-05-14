@@ -43,3 +43,7 @@ Example of this repository `python .\itree.py -d 2 -h .`
 ## Bin
 
 Using *pyinstaller* get **exe** file in dir `bin`. 
+Then, after adding itree.exe into your environment variable, you can use itree in everywhere:
+```
+itree [argv] [root]
+```
